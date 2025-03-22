@@ -1,0 +1,25 @@
+{%load static%}
+<html>
+    <head>
+        <title>Schedule Bot</title>
+        <link rel="stylesheet" href="{%static 'css/index.css'%}"
+    </head>
+    <body>
+        <h1>Schedule Bot</h1>
+
+        <br>
+
+        <h4>Assignments:</h4>
+
+        {%for info in user_info%}
+        <p>{{info.assignment_name}} {{info.due_date}}</p>
+        {%endfor%}
+
+        <a href="{%url 'add'%}">Add Assignment</a>
+
+        <br><br>
+
+        <a href="{%url 'generate'%}">Generate Schedule</a>
+
+    </body>
+</html>

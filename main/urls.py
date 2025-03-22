@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import home_page_view, add_img_url
+from .views import index_view, add_view, generate_view
 
 urlpatterns = [
-    path('', home_page_view, name='home'),
-    path('add_img_url', add_img_url, name='add_img_url'),
+    path('', index_view, name='index'),
+    path('add', add_view, name='add'),
+    path('generate', generate_view, name='generate'),
 ]

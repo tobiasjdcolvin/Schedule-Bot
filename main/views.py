@@ -1,11 +1,43 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
-from .models import ImageData
+from .models import UserInfo
 
 # imports for api calls utilizing http, getting json returned from api
 from requests import request as rq
 from json import loads
 
+def index_view(request):
+    # this is sending a request to the database
+    user_info = UserInfo.objects.all()
+
+    # make context to use in template:
+    my_context = {
+        'user_info': user_info,
+    }
+    # render the 'index.html' template and give it a context in the form of a dictionary
+    return render(request, 'index.html', my_context)
+
+def add_view(request):
+    my_context = {
+    }
+
+    return render(request, 'add.html', my_context)
+
+def generate_view(request):
+    my_context = {}
+
+    # url for api call
+    my_url = "https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1"
+    # api call
+    response = rq("GET", my_url)
+    # turn json into Python list
+    response_list = loads(response.content)
+    # add stuff from api to the context
+    my_context["pic_url"] = response_list[0]["url"]
+
+    return render(request, 'generate.html', my_context)
+
+'''
 def home_page_view(request):
     # this is sending a request to the database
     img_urls = ImageData.objects.all()
@@ -48,3 +80,4 @@ def add_img_url(request):
 
     # render the 'home.html' template and give it a context in the form of a dictionary
     return render(request, 'home.html', my_context)
+    '''
