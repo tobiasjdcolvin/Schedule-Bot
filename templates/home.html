@@ -1,0 +1,25 @@
+{%load static%}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Cat Website Test</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{%static 'css/home.css'%}"
+    </head>
+    <body>
+        <h1>Cat Website Test</h1>
+
+        <img src="{{pic_url}}">
+
+        <br>
+        <a href="{%url 'add_img_url'%}?urlhere={{pic_url}}">Save img url</a>
+
+        <br><br>
+
+        <h4>Saved img urls:</h4>
+        {%for img_url in img_urls%}
+        <p>{{img_url.url}}</p>
+        {%endfor%}
+
+    </body>
+</html>
