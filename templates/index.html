@@ -6,7 +6,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{%static 'css\index.css'%}"
+        <link rel="stylesheet" href="{%static 'css/index.css'%}"
     </head>
 <body>
 <h1 id="loadingh">Generating Your Schedule...</h1>
@@ -14,10 +14,12 @@
 
 <div id = "Banner">
 
-</div>
 
-<h1 id="test">Schedule Bot</h1>
-        
+<h1>Schedule Bot</h1>
+
+</div>
+<div class ="flex_container">    
+
 <div id = "AssignmentList">
 <h2> Assignments</h2>
 <ul>
@@ -26,15 +28,29 @@
         {%endfor%}
 </ul>
 </div>
+<div class = "right_flex">
+<div id = "links">
 <br>
-<t>Click here to add an assignment - </t><a href="{%url 'add'%}">Add Assignment</a>
- 
+<div id = "Assignment">
+<a href="{%url 'add'%}">Add Assignment</a>
+</div>
 <br>
 <br>
-<t>Click here to generate your potential schedule - </t><a href="{%url 'generate'%}" onclick="startloading()">Generate Schedule</a> 
 
-<script src="{% static 'js/index.js' %}"></script>
+<div id = "Schedule">
+<t>Click here to generate your potential schedule - </t><a href="{%url 'generate'%}" onclick="startloading()">Generate Schedule</a>
+  <script src="{% static 'js/index.js' %}"></script>
+</div>
+</div>
+<div id="blurb">
+<p>This is a tool that will take your assignments and hobbies, helping to create a schedule that can allow you to improve your focus and you productivity by giving you designated breaks and homework time to fit your schedule.</p>
+
 
 </div>
-</body>
+</div>
+</div>
+        <script src="" async defer></script>
+    </body>
+
+
 </html>
