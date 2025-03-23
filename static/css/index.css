@@ -13,6 +13,11 @@ a {
     color: dodgerblue;
 }
 
+#special_href {
+    color: dodgerblue;
+    font-weight: bolder;
+}
+
 #AssignmentList {
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
