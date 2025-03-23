@@ -24,7 +24,7 @@
 <h2> Assignments</h2>
 <ul>
     {%for info in user_info%}
-        <p>{{info.assignment_name}} {{info.due_date}}</p>
+        <p>{{info.assignment_name}} due {{info.due_date}}</p>
         {%endfor%}
 </ul>
 </div>
@@ -41,12 +41,12 @@
 <br><br>
 
 <div id = "Schedule">
-<t>Click here to generate your potential schedule - </t><a href="{%url 'generate'%}" onclick="startloading()">Generate Schedule</a>
+<t>Click here to generate your schedule - </t><a href="{%url 'generate'%}" onclick="startloading()" id="special_href">Generate Schedule</a>
   <script src="{% static 'js/index.js' %}"></script>
 </div>
 </div>
 <div id="blurb">
-<p>This is a tool that will take your assignments and hobbies, helping to create a schedule that can allow you to improve your focus and you productivity by giving you designated breaks and homework time to fit your schedule.</p>
+<p>This tool takes your assignments and ADHD into account, and helps create a schedule that allows you to improve your focus and productivity. It does this by giving you designated breaks and homework time to fit your schedule and promote engagement without burnout.</p>
 
 <br><br>
 <form action="{%url 'logout'%}" method="post">{%csrf_token%}
