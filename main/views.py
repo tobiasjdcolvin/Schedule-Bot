@@ -84,12 +84,12 @@ def generate_view(request):
                 Prioritize assignments where the nearer the due date, the more important. \
                 Don't use mark down format. \
                 Add multiple breaks per day, each break is 30 minutes mininum.\
-                Do not use millitary time. \
+                Do not use millitary time and use am and pm. \
                 leave half hour for breakfast between 8am and 10 am. \
                 leave hour for lunch between 12pm and 2pm. \
                 leave hour for dinner between 5pm and 8pm."),
             input= prompt,
-            temperature=0.3
+            temperature=0.2
         )
         my_context["txt_response"] = response.output_text
     else:
