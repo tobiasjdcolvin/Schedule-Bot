@@ -68,8 +68,14 @@ def generate_view(request):
             Each assignment has a minimum of 1 hour put into it. \
             The earliest time is at 8:00 am and the latest time is be 10:00 pm.\
             Do not use first person or second person.\
-            Do not use phases of the day\
-            Prioritize assignments where the nearer the due date, the more important"),
+            Do not use phases of the day.\
+            Prioritize assignments where the nearer the due date, the more important. \
+            Don't use mark down format. \
+            Add multiple breaks per day, each break is 30 minutes mininum.\
+            Do not use millitary time. \
+            leave half hour for breakfast between 8am and 10 am. \
+            leave hour for lunch between 12pm and 2pm. \
+            leave hour for dinner between 5pm and 8pm."),
         input= prompt,
         temperature=0.3
     )
