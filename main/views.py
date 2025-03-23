@@ -63,34 +63,36 @@ def generate_view(request):
     for info in UserInfo.objects.filter(user=request.user):
         prompt += info.assignment_name + " due by " + str(info.due_date) + ", "
 
-    response = client.responses.create(
-        model= "gpt-4o-mini",
-        instructions=("Given a list of assignments and due dates, \
-            give a possible schedule that will allow the user to finish \
-            the assignment on time. The schedule should broken up by days \
-            where each day is broken up by hours. \
-            Each time the user switches to a new assignment, there is a new line. \
-            This is only for assignment lines. \
-            Additionally each line involving an assignment will take the form \
-            [time1] - [time2]: work on [assignment], where time1 is the \
-            starting time, time2 is the ending time, and \
-            assignment is the current assignment they're working on.\
-            Each line has a limit of 80 characters so keep lines short. \
-            Each assignment has a minimum of 1 hour put into it. \
-            The earliest time is at 8:00 am and the latest time is be 10:00 pm.\
-            Do not use first person or second person.\
-            Do not use phases of the day.\
-            Prioritize assignments where the nearer the due date, the more important. \
-            Don't use mark down format. \
-            Add multiple breaks per day, each break is 30 minutes mininum.\
-            Do not use millitary time. \
-            leave half hour for breakfast between 8am and 10 am. \
-            leave hour for lunch between 12pm and 2pm. \
-            leave hour for dinner between 5pm and 8pm."),
-        input= prompt,
-        temperature=0.3
-    )
-
-    my_context["txt_response"] = response.output_text
+    if(prompt != ""):
+        response = client.responses.create(
+            model= "gpt-4o-mini",
+            instructions=("Given a list of assignments and due dates, \
+                give a possible schedule that will allow the user to finish \
+                the assignment on time. The schedule should broken up by days \
+                where each day is broken up by hours. \
+                Each time the user switches to a new assignment, there is a new line. \
+                This is only for assignment lines. \
+                Additionally each line involving an assignment will take the form \
+                [time1] - [time2]: work on [assignment], where time1 is the \
+                starting time, time2 is the ending time, and \
+                assignment is the current assignment they're working on.\
+                Each line has a limit of 80 characters so keep lines short. \
+                Each assignment has a minimum of 1 hour put into it. \
+                The earliest time is at 8:00 am and the latest time is be 10:00 pm.\
+                Do not use first person or second person.\
+                Do not use phases of the day.\
+                Prioritize assignments where the nearer the due date, the more important. \
+                Don't use mark down format. \
+                Add multiple breaks per day, each break is 30 minutes mininum.\
+                Do not use millitary time. \
+                leave half hour for breakfast between 8am and 10 am. \
+                leave hour for lunch between 12pm and 2pm. \
+                leave hour for dinner between 5pm and 8pm."),
+            input= prompt,
+            temperature=0.3
+        )
+        my_context["txt_response"] = response.output_text
+    else:
+        my_context["txt_response"] = "NO ASSIGNMENTS ENTERED"
 
     return render(request, 'generate.html', my_context)
