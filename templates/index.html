@@ -8,12 +8,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{%static 'css\index.css'%}"
     </head>
-    <body>
+<body>
+<h1 id="loadingh">Generating Your Schedule...</h1>
+<div id="content_wrapper">
+
 <div id = "Banner">
 
 </div>
 
-<h1>Schedule Bot</h1>
+<h1 id="test">Schedule Bot</h1>
         
 <div id = "AssignmentList">
 <h2> Assignments</h2>
@@ -28,8 +31,10 @@
  
 <br>
 <br>
-<t>Click here to generate your potential schedule - </t><a href="{%url 'generate'%}">Generate Schedule</a> 
+<t>Click here to generate your potential schedule - </t><a href="{%url 'generate'%}" onclick="startloading()">Generate Schedule</a> 
 
-        <script src="" async defer></script>
-    </body>
+<script src="{% static 'js/index.js' %}"></script>
+
+</div>
+</body>
 </html>

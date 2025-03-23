@@ -1,9 +1,10 @@
-body{
+body {
     text-align: center;
     background-color: rgb(53, 53, 53);
     color: white;
 }
-#AssignmentList{
+
+#AssignmentList {
     margin-left: 30%;
     margin-right: 30%;
     text-align: left;
@@ -12,12 +13,22 @@ body{
     background-color: rgb(81, 87, 93);
     list-style-position: inside;
 }
-h1{
+
+#loadingh {
+    visibility: hidden;
+    position: fixed;
+    left: 30%;
+    right: 30%;
+    top: 30%;
+}
+
+h1 {
     font-size: 3em;
     text-decoration: underline;
     text-align: center;
 }
-h2{
+
+h2 {
     text-align: center;
     margin-left: 0px;
     margin-right: 0px;
@@ -25,26 +36,30 @@ h2{
     margin-bottom: 10px;
     font-size: 2em;
 }
-li{
+
+li {
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 1.25em;
 }
-a{
+
+a {
     color: lightblue;
     font-size: 1.25em;
     margin-left: 0px;
 }
-t{
+
+t {
     font-size: 1.25em;
 }
-#Banner{
+
+#Banner {
     margin-left: 0px;
     margin-right: 0px;
     border-radius: 25px;
     border: 0px solid black;
     background-color: rgb(81, 87, 93);
     list-style-position: inside;
-    }
+}
