@@ -12,6 +12,10 @@ body {
     color: white;
 }
 
+input {
+    margin: 15px;
+}
+
 #AssignmentList {
     font-family: 'Courier New', Courier, monospace;
     text-align: left;

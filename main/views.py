@@ -87,6 +87,7 @@ def generate_view(request):
                 Do not use millitary time and use am and pm. \
                 leave half hour for breakfast between 8am and 10 am. \
                 leave hour for lunch between 12pm and 2pm. \
+                Make sure your output is NOT in markdown format. \
                 leave hour for dinner between 5pm and 8pm."),
             input= prompt,
             temperature=0.2
