@@ -1,0 +1,13 @@
+{%load static%}
+<head>
+    <link rel="stylesheet" href="{%static 'css/login.css'%}"
+</head>
+
+<body>
+<h2>Log In</h2>
+<form method="post">{%csrf_token%}
+    {{form}}
+    <button type="submit">Log In</button>
+</form>
+<a href="{%url 'signup'%}">Register Here</a>
+</body>

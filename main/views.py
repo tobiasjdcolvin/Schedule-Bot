@@ -3,51 +3,51 @@ from django.http import HttpResponse, HttpRequest
 from .models import UserInfo
 from django.views.generic.edit import CreateView, DeleteView, View
 from django.urls import reverse_lazy
-
-# imports for api calls utilizing http, getting json returned from api
-from requests import request as rq
-from json import loads
-
-# imports for api calls to openAi
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from openai import OpenAI
 
+@login_required
 def index_view(request):
-    # this is sending a request to the database
-    user_info = UserInfo.objects.all()
+    # Only get assignments for the current logged-in user
+    user_info = UserInfo.objects.filter(user=request.user)
 
-    # make context to use in template:
     my_context = {
         'user_info': user_info,
     }
-    # render the 'index.html' template and give it a context in the form of a dictionary
     return render(request, 'index.html', my_context)
 
-'''
-def add_view(request):
-    my_context = {
-    }
-    return render(request, 'add.html', my_context)
-'''
 
-class add_view(CreateView):
+class add_view(LoginRequiredMixin, CreateView):
     model = UserInfo
     template_name = 'add.html'
     fields = ['assignment_name', 'due_date']
     success_url = reverse_lazy("index")
+    
+    # Override form_valid to set the user
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
+@login_required
 def delete_view(request):
-    last = UserInfo.objects.filter(pk__in=UserInfo.objects.order_by('-id').values('pk')[:1]).delete()
-    # this is sending a request to the database
-    user_info = UserInfo.objects.all()
+    # Only delete the last assignment of the current user
+    last = UserInfo.objects.filter(
+        user=request.user,
+        pk__in=UserInfo.objects.filter(user=request.user).order_by('-id').values('pk')[:1]
+    ).delete()
+    
+    # Get only assignments for the current logged-in user
+    user_info = UserInfo.objects.filter(user=request.user)
 
-    # make context to use in template:
     my_context = {
         'user_info': user_info,
     }
-    # render the 'index.html' template and give it a context in the form of a dictionary
     return render(request, 'index.html', my_context)
 
+
+@login_required
 def generate_view(request):
     my_context = {}
 
@@ -55,14 +55,13 @@ def generate_view(request):
     secretkey = f.read().strip('\n') 
 
     client = OpenAI(
-    api_key=secretkey
+        api_key=secretkey
     )
 
+    # Only use assignments for the current logged-in user
     prompt = ""
-    for info in UserInfo.objects.all():
-        prompt+= info.assignment_name + " due by " + str(info.due_date) + ", "
- 
-        
+    for info in UserInfo.objects.filter(user=request.user):
+        prompt += info.assignment_name + " due by " + str(info.due_date) + ", "
 
     response = client.responses.create(
         model= "gpt-4o-mini",
@@ -92,52 +91,6 @@ def generate_view(request):
         temperature=0.3
     )
 
-    # add stuff from api to the context
     my_context["txt_response"] = response.output_text
 
     return render(request, 'generate.html', my_context)
-
-'''
-def home_page_view(request):
-    # this is sending a request to the database
-    img_urls = ImageData.objects.all()
-
-    # make context to use in template:
-    my_context = {'img_urls': img_urls}
-
-    # url for api call
-    my_url = "https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1"
-    # api call
-    response = rq("GET", my_url)
-    # turn json into dict
-    response_list = loads(response.content)
-    # add stuff from api to the context
-    my_context["pic_url"] = response_list[0]["url"]
-
-    # render the 'home.html' template and give it a context in the form of a dictionary
-    return render(request, 'home.html', my_context)
-
-
-def add_img_url(request):
-    cat_img_url = request.GET.get("urlhere")
-    ImageData.objects.create(url=cat_img_url)
-
-    # the following is the same as the other view:
-    # this is sending a request to the database
-    img_urls = ImageData.objects.all()
-
-    # make context to use in template:
-    my_context = {'img_urls': img_urls}
-
-    # url for api call
-    my_url = "https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1"
-    # api call
-    response = rq("GET", my_url)
-    # turn json into dict
-    response_list = loads(response.content)
-    # add stuff from api to the context
-    my_context["pic_url"] = response_list[0]["url"]
-
-    # render the 'home.html' template and give it a context in the form of a dictionary
-    return render(request, 'home.html', my_context)
-    '''

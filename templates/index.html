@@ -32,6 +32,7 @@
 <div id = "links">
 <br>
 
+{%if user.is_authenticated%}
 <t>Click here to add an assignment - </t><a href="{%url 'add'%}">Add Assignment</a>
 <br><br>
 <t>Click here to delete the last assignment - </t><a href="{%url 'delete'%}">Delete Last Assignment</a>
@@ -47,6 +48,19 @@
 <div id="blurb">
 <p>This is a tool that will take your assignments and hobbies, helping to create a schedule that can allow you to improve your focus and you productivity by giving you designated breaks and homework time to fit your schedule.</p>
 
+<br><br>
+<form action="{%url 'logout'%}" method="post">{%csrf_token%}
+    <br>
+    <button type="submit">Log Out</button>
+</form>
+{%else%}
+<h3>Please log in.</h3>
+<br>
+<a href="{%url 'login'%}">Log In</a>
+<br><br>
+<a href="{%url 'signup'%}">Sign Up</a>
+{%endif%}
+<br>
 
 </div>
 </div>
