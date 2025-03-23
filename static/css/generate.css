@@ -1,4 +1,41 @@
-body {
-    background-color: burlywood;
+body{
+    text-align: center;
+    background-color: rgb(53, 53, 53);
+    color: white;
+}
+h1{
+    font-size: 3em;
+    text-decoration: underline;
     text-align: center;
 }
+h2{
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 2em;
+}
+li{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.25em;
+}
+a{
+    color: lightblue;
+    font-size: 1.25em;
+    margin-left: 0px;
+}
+t{
+    font-size: 1.25em;
+}
+#Banner{
+    margin-left: 0px;
+    margin-right: 0px;
+    border-radius: 25px;
+    border: 0px solid black;
+    background-color: rgb(81, 87, 93);
+    list-style-position: inside;
+    }
