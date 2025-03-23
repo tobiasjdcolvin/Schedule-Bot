@@ -1,3 +1,8 @@
+# Schedule Bot - An Optimized Schedule Generation Tool For ADHD Students.
+## Created in 24 hours for the 2025 Hack Arizona Hackathon.
+### Demo Video: [https://youtu.be/6h25XHW7KRA?si=PaQHMRMBF815Txpe](https://youtu.be/6h25XHW7KRA?si=PaQHMRMBF815Txpe)
+
+
 **Setup instructions:**
 
 1. Clone repository with git clone
