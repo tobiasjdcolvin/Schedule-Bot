@@ -1,11 +1,14 @@
+
 *{
     margin: 0;
 }
 body{
+
     text-align: center;
     background-color: rgb(17,18,58);
     color: white;
 }
+
 #AssignmentList{
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
@@ -20,15 +23,27 @@ body{
     margin-left: 25;
     margin-right: 25;
 }
-h1{
-    font-size: 6em;
+
+
+#loadingh {
+    visibility: hidden;
+    position: fixed;
+    left: 30%;
+    right: 30%;
+    top: 30%;
+}
+
+h1 {
+font-size: 6em;
     margin-top: 50px;
     text-align: center;
     font-weight: normal;
     letter-spacing: 0.2em;
 }
+
 h2{
     background-color: rgb(47,69,107);
+
     text-align: center;
     margin-left: 0px;
     margin-right: 0px;
@@ -37,25 +52,33 @@ h2{
     font-size: 3em;
     font-weight: normal;
 }
+
 ul{
+
+li {
+
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 2em;
 }
-a{
+
+a {
     color: lightblue;
     font-size: 1.25em;
     margin-left: 0px;
 }
-t{
+
+t {
     font-size: 1.25em;
 }
+
 #Banner{
     font-family: 'Courier New', Courier, monospace;
     width:100%;
     height: 150px;
+
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 25px;
@@ -63,6 +86,7 @@ t{
     border: 0px solid black;
     background-color: rgb(193,2,48);
     list-style-position: inside;
+
     font-weight: normal;
     }
 #flex_container{
@@ -110,3 +134,4 @@ t{
     margin-right: 25px;
     color: rgb(87,125,158);
 }
+

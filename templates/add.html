@@ -6,9 +6,13 @@
     </head>
     <body>
         <h1>Add Assignment</h1>
-
         <br>
-        <p>Form will be here.</p>
 
+        <form action="" method="post">{% csrf_token %}
+            {{form}}
+            <input type="submit" value="Save">
+        </form>
+
+        <a href="{%url 'index'%}">Back</a>
     </body>
 </html>
