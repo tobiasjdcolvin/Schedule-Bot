@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from .models import UserInfo
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, View
 from django.urls import reverse_lazy
 
 # imports for api calls utilizing http, getting json returned from api
@@ -35,6 +35,18 @@ class add_view(CreateView):
     fields = ['assignment_name', 'due_date']
     success_url = reverse_lazy("index")
 
+
+def delete_view(request):
+    last = UserInfo.objects.filter(pk__in=UserInfo.objects.order_by('-id').values('pk')[:1]).delete()
+    # this is sending a request to the database
+    user_info = UserInfo.objects.all()
+
+    # make context to use in template:
+    my_context = {
+        'user_info': user_info,
+    }
+    # render the 'index.html' template and give it a context in the form of a dictionary
+    return render(request, 'index.html', my_context)
 
 def generate_view(request):
     my_context = {}
