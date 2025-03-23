@@ -5,9 +5,11 @@
 
 <body>
 <h2>Log In</h2>
+<br>
 <form method="post">{%csrf_token%}
     {{form}}
     <button type="submit">Log In</button>
 </form>
+<br>
 <a href="{%url 'signup'%}">Register Here</a>
 </body>
