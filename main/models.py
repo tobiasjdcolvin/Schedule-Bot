@@ -2,7 +2,7 @@ from django.db import models
 
 class UserInfo(models.Model):
     assignment_name = models.CharField(max_length=250)
-    due_date = models.DateTimeField()
+    due_date = models.CharField(max_length=250)
 
 '''
 # this table will only have one field for the image urls
