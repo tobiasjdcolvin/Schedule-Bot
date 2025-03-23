@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from .models import UserInfo
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 
 # imports for api calls utilizing http, getting json returned from api
 from requests import request as rq
@@ -17,11 +19,19 @@ def index_view(request):
     # render the 'index.html' template and give it a context in the form of a dictionary
     return render(request, 'index.html', my_context)
 
+'''
 def add_view(request):
     my_context = {
     }
-
     return render(request, 'add.html', my_context)
+'''
+
+class add_view(CreateView):
+    model = UserInfo
+    template_name = 'add.html'
+    fields = ['assignment_name', 'due_date']
+    success_url = reverse_lazy("index")
+
 
 def generate_view(request):
     my_context = {}
