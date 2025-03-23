@@ -1,0 +1,18 @@
+{%load static%}
+<html>
+    <head>
+        <title>Delete Assignment</title>
+        <link rel="stylesheet" href="{%static 'css\delete.css'%}"
+    </head>
+    <body>
+        <h1>Delete Assignment</h1>
+
+        <br>
+
+        <form action="" method="post">{% csrf_token %}
+            {{form}}
+            <input type="submit" value="Delete">
+        </form>
+
+    </body>
+</html>
